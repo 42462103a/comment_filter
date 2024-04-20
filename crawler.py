@@ -48,23 +48,19 @@ for button in buttons:
 # combine.to_csv("google_comments.tsv",sep="\t",index=False)
 
 
-
 try:
     comments= driver.find_elements(By.CSS_SELECTOR, "div[class=\"MyEned\"] span[class=\"wiI7pd\"]")
-   
 except:
     comments=[]
 
 comments=[comment.text for comment in comments]
-
-
 stars= driver.find_elements(By.CLASS_NAME,"kvMYJc")
-
 ratings=[int(star.get_attribute("aria-label")[0]) for star in stars]
 
 h=len(ratings)-len(comments)
 for i in range(h):
     comments.append("")
+
 print(len(comments))
 print(len(ratings))
 comments = pd.Series(comments)
