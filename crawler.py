@@ -7,7 +7,7 @@ import time
 from selenium.common.exceptions import NoSuchElementException
 
 
-store_list=list(map(str,input("輸入店家名稱:").split()))
+store_list=list(map(str,input("Please enter the name of the locations and separate them with a space:").split()))
 for num in range(len(store_list)): 
     store=store_list[num]
 
@@ -60,8 +60,10 @@ for num in range(len(store_list)):
         stars=pd.Series(stars)
         combine=pd.DataFrame({"comments":comments,"ratings":ratings})
         combine.to_csv("google_comments.tsv",sep="\t",index=False)
-        print("店家:",store)
-        print("真實星數=",real_ratings_ave)
-        print("評論真實度=",comments_long/len(ratings))
+        
+        print("Location":,store)
+        print("The real ratings=",real_ratings_ave)
+        print("The amount of comments",len(ratings))
+        print("Review credibility=",'%.2f' %(comments_long/len(ratings)*100),("%"))
     except:
         print("Can't fihd",store)
